@@ -48,14 +48,15 @@
                 margin: 0px 0px 10px 0px !important
             }
         </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
     <body>
         <div id="map"></div>
         <div class="selector">
-            <div class="selection madisonSquare" id="madisonSquare"><p>Madison Square</p><input type="text" name="msinput" /></div>
-            <div class="selection restaurant" id="restaurant"><p>Expensive Restaurant on Broadway</p><input type="text" name="sixoneinput" />40.759645  -73.984689</div>
-            <div class="selection stores" id="stores"><p>Stores on 6th Avenue</p><input type="text" name="sixtwoinput" />40.766706 -73.982892</div>
-            <div class="selection church" id="church"><p>The Church</p><input type="text" name="churchinput" /> </div>
+            <div class="selection madisonSquare" id="madisonSquare"><p>Madison Square</p><input type="text" name="msinput" id="msinput" /></div>
+            <div class="selection restaurant" id="restaurant"><p>Expensive Restaurant on Broadway</p><input type="text" name="sixoneinput" id="sixoneinput" /></div>
+            <div class="selection stores" id="stores"><p>Stores on 6th Avenue</p><input type="text" name="sixtwoinput" id="sixtwoinput" /></div>
+            <div class="selection church" id="church"><p>The Church</p><input type="text" name="churchinput" id="churchinput" /></div>
         </div>
         <script>
             let map;
@@ -66,13 +67,22 @@
                 });
             }
 
-            document.getElementById("church").onclick(event => {
-              map.setCenter({lat:40.743930, lng: -73.990040})
-            });
+            const Save = _ => {
+              $.ajax({
+                url:'api/save',
+                success:function(data){
+                  $('#time').append(data);
+                }
+              });
+            }
+
+            $("#madisonSquare").click(_ => map.panTo({lat:40.741535, lng: -73.987038}))
+            $("#restaurant").click(_ => map.panTo({lat:40.743247, lng: -73.988541}))
+            $("#stores").click(_ => map.panTo({lat:40.749778, lng: -73.987736}))
+            $("#church").click(_ => map.panTo({lat:40.743930, lng: -73.990040}))
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=<%= id %>&callback=initMap"
             async defer></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </body>
 </html>
 helloworld
