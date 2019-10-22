@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>hello world</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta charset="utf-8">
+        <style>
+            /* Always set the map height explicitly to define the size of the div
+             * element that contains the map. */
+            #map {
+                height: 100%;
+            }
+            /* Optional: Makes the sample page fill the window. */
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .selector {
+                top: 30px;
+                right: 30px;
+                position: fixed;
+                z-index: 99;
+                background: whitesmoke;
+                border: gainsboro;
+                border-radius: 5px;
+            }
+
+            .selection {
+                padding: 15px 30px;
+                transition: all;
+                transition-duration: 0.5s;
+            }
+
+            .selection:hover {
+                background: gainsboro;
+                transition: all;
+                transition-duration: 0.5s;
+            }
+
+            input {
+                border: gainsboro;
+                border-radius: 2px;
+            }
+
+            p {
+                margin: 0px 0px 10px 0px !important
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+        <div class="selector">
+            <div class="selection madisonSquare" id="madisonSquare"><p>Madison Square</p><input type="text" name="msinput" /></div>
+            <div class="selection restaurant" id="restaurant"><p>Expensive Restaurant on Broadway</p><input type="text" name="sixoneinput" />40.759645  -73.984689</div>
+            <div class="selection stores" id="stores"><p>Stores on 6th Avenue</p><input type="text" name="sixtwoinput" />40.766706 -73.982892</div>
+            <div class="selection church" id="church"><p>The Church</p><input type="text" name="churchinput" /> </div>
+        </div>
+        <script>
+            let map;
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: 40.741535, lng: -73.987038},
+                    zoom: 18
+                });
+            }
+
+            document.getElementById("church").onclick(event => {
+              map.setCenter({lat:40.743930, lng: -73.990040})
+            });
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= id %>&callback=initMap"
+            async defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </body>
+</html>
 helloworld
