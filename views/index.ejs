@@ -64,7 +64,7 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
             </select>
-            <div class="selection madisonSquare" id="madisonSquare"><p>Madison Square</p><input type="text" name="msinput" id="msinput" /></div>
+                <div class="selection madisonSquare" id="madisonSquare"><p>Madison Square</p><input type="text" name="msinput" id="msinput" /></div>
             <div class="selection restaurant" id="restaurant"><p>Expensive Restaurant on Broadway</p><input type="text" name="sixoneinput" id="sixoneinput" /></div>
             <div class="selection stores" id="stores"><p>Stores on 6th Avenue</p><input type="text" name="sixtwoinput" id="sixtwoinput" /></div>
             <div class="selection church" id="church"><p>The Church</p><input type="text" name="churchinput" id="churchinput" /></div>
@@ -82,14 +82,14 @@
               $.ajax({
                 method: "PUT",
                 url:'api/' + $("#teamselect").val(),
-                data: JSON.stringify({
+                data: {
                   madisonSquare: $("#msinput").val(),
                   restaurant: $("#sixoneinput").val(),
                   stores: $("#sixtwoinput").val(),
                   church: $("#churchinput").val()
-                })
+                }
               }).done(data => {
-                $('#time').append(data);
+                console.log("success");
               }).fail(_ => {
                 console.log({
                   madisonSquare: $("#msinput").val(),
