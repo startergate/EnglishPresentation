@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>hello world</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta charset="utf-8">
+        <style>
+            html {
+                text-align: center;
+                width: 100vw;
+                height: 100vh;
+            }
+
+            .container {
+                background: whitesmoke;
+                border: gainsboro;
+                border-radius: 5px;
+                width: 50%;
+                margin:auto;
+            }
+
+            .container-item {
+                padding: 15px 30px;
+                transition: all;
+                transition-duration: 0.5s;
+                text-align: left;
+            }
+
+            .container-item:hover {
+                background: gainsboro;
+                transition: all;
+                transition-duration: 0.5s;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="container" id="container">
+
+        </div>
+        <script>
+          $.ajax({
+            method: "GET",
+            url:'/api/'
+          }).done(data => {
+            console.log(data);
+            for (let i in data) {
+              let item = data[i];
+              $("#container").append(`<div class="container-item">
+                <div>
+                    <span>Madison Square</span>
+                    <span> | </span>
+                    <span>${item.madisonSquare}</span>
+                </div>
+                <div>
+                    <span>Expensive Restaurant on Broadway</span>
+                    <span> | </span>
+                    <span>${item.restaurant}</span>
+                </div>
+                <div>
+                    <span>Stores on 6th Avenue</span>
+                    <span> | </span>
+                    <span>${item.stores}</span>
+                </div>
+                <div>
+                    <span>The Church</span>
+                    <span> | </span>
+                    <span>${item.church}</span>
+                </div>
+            </div>`)
+            }
+          })
+        </script>
+    </body>
+</html>

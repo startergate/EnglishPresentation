@@ -12,7 +12,7 @@ let conn = mysql.createConnection({
 
 /* GET home page. */
 router.put('/:id', (req, res, next) => {
-  conn.query(`UPDATE data SET madisonSquare='${conn.escape(req.body.madisonSquare)}', restaurant='${conn.escape(req.body.restaurant)}', stores = '${conn.escape(req.body.stores)}', church = '${conn.escape(req.body.church)}' WHERE id = ${conn.escape(req.params.id)}`);
+  conn.query(`UPDATE data SET madisonSquare=${conn.escape(req.body.madisonSquare)}, restaurant=${conn.escape(req.body.restaurant)}, stores = ${conn.escape(req.body.stores)}, church = ${conn.escape(req.body.church)} WHERE id = ${req.params.id}`);
   res.sendStatus(200);
 });
 
